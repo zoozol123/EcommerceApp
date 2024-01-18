@@ -1,0 +1,19 @@
+/* Footer CSS */
+.footer {
+    height: 10px;
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    color: white; /* White text color */
+    padding: 20px 0; /* Padding on top and bottom */
+    width: 100%; /* Full width */
+    position: relative; /* Adjust if needed */
+    background-color: #DAE4EB;
+}
+
+.footer-content p {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    font-size: 0.8rem; /* Smaller font size */
+    color: black;
+}

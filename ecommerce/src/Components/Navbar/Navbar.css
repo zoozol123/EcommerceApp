@@ -1,0 +1,66 @@
+/* Navbar.css */
+
+.banner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+  }
+  
+  .navbar-brand a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem; /* Larger text for brand/logo */
+  }
+  
+  .search-bar {
+    flex-grow: 1; /* Allow search bar to take up extra space */
+    margin: 0 20px;
+  }
+  
+  .search-bar input {
+    width: 100%; /* Full width of the parent */
+    padding: 10px;
+  }
+  
+  .search-bar button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .nav-links a,
+  .user-cart a {
+    color: #5F849C;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: 'Merriweather', serif;
+
+  }
+  
+  .nav-links a:hover,
+  .user-cart a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive adjustments as needed */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: start;
+    }
+  
+    .search-bar {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
+  

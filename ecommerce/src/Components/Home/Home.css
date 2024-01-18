@@ -1,0 +1,147 @@
+/* Styling for the responsive image */
+.mainbanner img {
+    margin-top: 60px;
+    margin-bottom: 50px;
+    width: 100%;
+    max-height: 80vh;
+    display: block;
+  }
+
+ /* Styling for the category section */
+.category-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 70px;
+    margin: auto auto; /* Center the row and add margin */
+    width: 80%; /* Adjust the width as needed */
+    min-height: 40vh;
+    gap: 40px;
+
+  }
+  
+  .category-square {
+    width: 250px;
+    margin: 10px; /* Adjust margin between squares */
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Styling for each category square */
+.category-square:nth-child(1) {
+    background-color: #5F849C;
+  }
+  
+  .category-square:nth-child(2) {
+    background-color: #DFDDD3;
+  }
+  
+  .category-square:nth-child(3) {
+    background-color: #DAE4EB;
+  }
+  
+  .category-square:nth-child(4) {
+    background-color: #9E9383;
+  }
+  
+  .category-square a {
+    text-decoration: none;
+    color: #fff; /* Adjust text color */
+  }
+
+  .border{
+    width: 230px;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+  }
+
+
+ /* Styling for popular products section */
+.popular-products-section {
+    margin: 40px 30px;
+    min-height: 40vh;
+    padding-bottom: 50px;
+}
+
+.photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px; /* Adjust the gap between images */
+    border-top: 1px solid #5F849C;
+    padding-top: 70px;
+}
+
+/* Style each image */
+.photos img {
+    width: 100%; /* Adjust the width of each image as needed */
+    height: 250px; /* Adjust the height of each image as needed */
+    object-fit: cover; /* Maintain aspect ratio */
+}
+
+.popular-products-section button{
+    height: 50px;
+    width: 300px;
+    margin: 30px 10px;
+    background-color: #DAE4EB;
+    border: none;
+    font-size: 20px;
+    font-family: 'Merriweather', serif;
+    cursor: pointer;
+}
+
+
+.benefits {
+    display: flex;
+    flex-direction: column;
+    margin: 40px 30px; /* Adjust margin as needed */
+}
+
+.benefits h2 {
+    margin-bottom: 20px; /* Add space between heading and benefit squares */
+
+}
+
+.benefits-row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding-top: 50px;
+    border-top: 1px solid #5F849C;
+}
+
+.benefit-square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+    width: 350px;
+    height: 200px;
+    border: 3px solid #5F849C;
+    text-align: center; /* Center text inside the benefit square */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+    .category-section {
+        width: 90%;
+    }
+
+    .photos {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .category-section {
+        width: 100%;
+    }
+
+    .photos {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}

@@ -1,0 +1,57 @@
+/* Order.css */
+
+.order-summary {
+    margin: 70px;
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .order-summary h3 {
+    font-size: 40px;
+    margin-bottom: 30px;
+  }
+  
+  .personal-data,.address-data,.contact-data {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin-bottom: 15px;
+  }
+  
+
+  label {
+    display: flex;
+    flex-direction: column;
+    width: 50%; /* Adjust the width as needed */
+    padding: 10px 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+  }
+  
+  label span {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  select, input {
+    margin-top: 5px;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid;
+  }
+  
+  .order-summary button {
+    height: 40px;
+    width: 300px;
+    margin: 20px 10px;
+    background-color: #DAE4EB;
+    border: none;
+    font-size: 20px;
+    font-family: 'Merriweather', serif;
+    cursor: pointer;
+  }
+  

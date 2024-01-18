@@ -1,0 +1,93 @@
+.shopping-cart-container {
+    min-height: 54vh;
+    margin: 70px 30px;
+}
+
+.shopping-cart-container img {
+    width: 200px;
+    height: auto;
+    margin-right: 100px; /* Zdjęcie po lewej stronie */
+    display: flex;
+    justify-content: flex-start;
+}
+
+h2 {
+    font-size: 40px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.details-info h3 {
+    font-size: 24px;
+}
+
+.cart-content label{
+    gap:20px;
+    padding: 10px 0px;
+    margin-bottom: 15px;
+
+}
+.details-info {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+
+.details-info input{
+    width: 30px;
+    margin-left: 5px;
+}
+
+.input-icon{
+    display: flex;
+    justify-content: flex-start;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+p {
+    font-size: 16px;
+    color: #888;
+}
+
+p.empty-cart-message {
+    font-size: 18px;
+    color: #555;
+}
+
+
+.purchase-details{
+    display: flex;
+    justify-content: center;
+}
+
+.purchase-details button {
+    height: 50px;
+    width: 300px;
+    margin: 20px 10px;
+    background-color: #DAE4EB;
+    border: none;
+    font-size: 20px;
+    font-family: 'Merriweather', serif;
+    cursor: pointer;
+
+}
+a{
+    text-decoration: none;
+
+}

@@ -1,0 +1,70 @@
+/* ProductView.css */
+
+.product-view-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: 70px 30px;
+    gap: 20px;
+  }
+  
+  .product-image img {
+    width: 100%;
+    max-width: 100%; /* Maksymalna szerokość obrazu to 100% szerokości kontenera */
+    height: 100%;
+  }
+  
+  .product-info {
+    margin-left: 30px; /* Nie ma potrzeby dodatkowego marginesu po lewej stronie */
+  }
+  
+  .product-info h2 {
+    font-size: 36px;
+  }
+  
+  .product-info h3 {
+    font-size: 20px;
+    color: #4f6d82;
+  }
+
+  .add{
+    
+    height: 40px;
+    width: 300px;
+    margin: 20px 0;
+    background-color: #DAE4EB;
+    border: none;
+    
+    font-size: 20px;
+    font-family: 'Merriweather', serif;
+}
+  
+  .product-info p {
+    width: 90%; /* Zajmij pełną szerokość tekstu */
+  }
+  
+  .size-list {
+    display: flex;
+    flex-wrap: wrap; /* Elementy owijają się na nowej linii w przypadku małej przestrzeni */
+  }
+  
+  .size-rectangle {
+    background-color: transparent;
+    border: 2px solid black;
+    color: black;
+    padding: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+  }
+  
+  .size-rectangle:hover {
+    background-color: #ccc;
+  }
+  
+  .size-rectangle.selected {
+    background-color: #000;
+    color: #fff;
+  }
+  

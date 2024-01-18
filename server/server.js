@@ -46,8 +46,8 @@ const OrderProducts = sequelize.define('OrderProducts', {
 // Relacje
 User.hasMany(Order);
 Order.belongsTo(User);
-Product.belongsToMany(Order, { through: OrderProducts, onDelete: 'CASCADE' });
-Order.belongsToMany(Product, { through: OrderProducts, onDelete: 'CASCADE' });
+Product.belongsToMany(Order, { through: OrderProducts });
+Order.belongsToMany(Product, { through: OrderProducts });
 
 // Middleware do weryfikacji tokena
 const verifyToken = (req, res, next) => {

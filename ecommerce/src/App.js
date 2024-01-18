@@ -10,6 +10,9 @@ import Order from './Components/Order/Order';
 import ProductView from './Components/ProductView/ProductView';
 
 function App() {
+  useEffect(() => {
+    document.title = "EcommerceApp";
+  }, []);
   
   return (
 <Router>

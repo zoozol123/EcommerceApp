@@ -21,9 +21,9 @@
   }
   
   .category-square {
-    width: 250px;
+    width: 280px;
     margin: 10px; /* Adjust margin between squares */
-    height: 250px;
+    height: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,8 +52,8 @@
   }
 
   .border{
-    width: 230px;
-    height: 230px;
+    width: 260px;
+    height: 260px;
     display: flex;
     justify-content: center;
     align-items: center;

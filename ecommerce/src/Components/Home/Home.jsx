@@ -39,7 +39,7 @@ const Home = () => {
         <div className="category-square">
             <div className='border'>
           <a href="/categories">
-            <h2>NEW IN</h2>
+            <h2>NOWOŚCI</h2>
           </a>
           </div>
         </div>
@@ -47,14 +47,14 @@ const Home = () => {
         <div className="category-square">
         <div className='border'>
           <a href="/popular-products">
-            <h2>WOMEN</h2>
+            <h2>KOBIETY</h2>
           </a>
           </div>
         </div>
 
         <div className="category-square">
         <div className='border'>
-          <a href="/reviews"> <h2>MAN</h2></a>
+          <a href="/reviews"> <h2>MĘŻCZYŹNI</h2></a>
           </div>
         </div>
 
@@ -62,7 +62,8 @@ const Home = () => {
         <div className='border'>
 
           <a href="/reviews">
-            <h2>HOME</h2>
+            <h2>STRONA</h2>
+            <h2>GŁÓWNA</h2>
           </a>
           </div>
 
@@ -71,7 +72,7 @@ const Home = () => {
 
 
       <div className='popular-products-section'>
-        <h2> POPULAR PRODUCTS</h2>
+        <h2> POPULARNE PRODUKTY</h2>
         <div className='photos'>
           {popularProducts.map((product) => (
             // Zmieniłem <img> na <Link> do nawigacji do widoku ProductView po kliknięciu
@@ -84,27 +85,27 @@ const Home = () => {
             </Link>
           ))}
         </div>
-        <a href="/products"><button>See More</button></a>
+        <a href="/products"><button>Zobacz więcej</button></a>
 
       </div>
 
 
       <div className='benefits'>
-        <h2>BENEFITS</h2>
+        <h2>KORZYŚCI</h2>
 
         <div className='benefits-row'>
 
         <div className='benefit-square'>
-        <p>Want 10% discount and free delivery? 
-            <br></br>Become a Club Member!</p>
+        <p>Chcesz 10% zniżki i darmowe dostawy? 
+            <br></br>Zostań klubowiczem!</p>
         </div>
 
         <div className='benefit-square'>
-        <p>Delivery 2-3 business days</p>
+        <p>Wysyłka 2-3 dni robocze</p>
          </div>
 
         <div className='benefit-square'>
-        <p>Free delivery for Club Members when purchasing over $100,and always free for Premium Club Members.</p>
+        <p>Darmowa dostawa dla Klubowiczów przy zakupach powyżej 200 złotych.</p>
         </div>
 
         </div>

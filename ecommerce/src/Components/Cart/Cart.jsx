@@ -52,7 +52,7 @@ const Cart = () => {
         </div>
       ) : (
         <div>
-          <h2>Shopping Cart</h2>
+          <h2>Koszyk</h2>
           {hasItems ? (
             <div className="cart-content">
               <ul>
@@ -61,9 +61,9 @@ const Cart = () => {
                     <img src={item.image} alt={item.name} />
                     <div className='details-info'>
                       <h3>{item.name}</h3>
-                      <p>Price: ${item.price}</p>
+                      <p>Cena: {item.price} zł</p>
                       <label>
-                        Quantity:
+                        Ilość:
                         <input
                           type="number"
                           min="1"

@@ -86,7 +86,7 @@ const Products = () => {
      <div className='search-bar'>
        <input
          type='text'
-         placeholder='Search products...'
+         placeholder='Szukaj produktów...'
          value={searchQuery}
          onChange={handleSearch}
        />
@@ -104,16 +104,16 @@ const Products = () => {
         <Link to={`/product/${product.id}`} className="product-link">
           <img src={product.image} alt={product.name} />
           <h3>{product.name}</h3>
-          <p>Price: ${product.price}</p>
+          <p>Cena: {product.price} zł</p>
         </Link>
 
-         <button
+         {/*<button
            className={`addToCart ${addedToCart[product.id - 1] ? 'added' : ''}`}
            onClick={() => handleAddToCart(product.id)}
            disabled={addedToCart[product.id - 1]}
          >
            {addedToCart[product.id - 1] ? 'Added' : 'Add to cart'}
-         </button>
+        </button>*/}
        </div>     
         ))}
       </div>

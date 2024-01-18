@@ -37,9 +37,9 @@ const ProductView = ({ match }) => {
       </div>
       <div className="product-info">
         <h2>{product?.name}</h2>
-        <h3>Price: ${product?.price}</h3>
+        <h3>Cena: {product?.price} zł</h3>
 
-        <p>SIZES</p>
+        <p>ROZMIARY</p>
         
       {/* Lista prostokątnych przycisków z numerami rozmiarów */}
       <div className="size-list">
@@ -54,14 +54,14 @@ const ProductView = ({ match }) => {
           ))}
         </div>
 
-        <button className='add'>Add to Cart</button>
+        <button className='add'>Dodaj do koszyka</button>
 
         <p>{product?.description}</p>
         {/* Dodaj inne informacje o produkcie, jeśli są dostępne */}
         <br></br>
 
-        <h3>Product Details</h3>
-        <p>Shell: 50% Polyamide, 45% Metallic Fibres, 5% Elastane, Lining: 85% Polyester, 15% Elastane</p>
+        <h3>Szczegółu produktu:</h3>
+        <p>70% Bawełna, 15% Poliester, 15% Elastan</p>
       </div>
     </div>
   );

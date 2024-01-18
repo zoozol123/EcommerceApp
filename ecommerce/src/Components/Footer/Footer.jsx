@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="footer-content">
-        <p>© 2023 Your Company Name. All Rights Reserved.</p>
+        <p>© 2024 Filip Łazewski, Gabriela Czarnowicz, Katarzyna Ziniewicz</p>
         {/* Add additional footer content here as needed */}
       </div>
     </div>

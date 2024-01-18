@@ -67,9 +67,20 @@ const verifyToken = (req, res, next) => {
 // Rejestracja użytkownika
 app.post('/register', async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { email, username, password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await User.create({ username, password: hashedPassword });
+
+        const existingUser = await User.findOne({
+            where: {
+                [Op.or]: [{ email }, { username }]
+            }
+        });
+
+        if (existingUser) {
+            return res.status(400).json({ message: 'Użytkownik o podanym adresie e-mail lub nazwie użytkownika już istnieje' });
+        }
+
+        const user = await User.create({ email, username, password: hashedPassword });
         res.status(201).json({ message: "Użytkownik zarejestrowany", userId: user.id });
     } catch (error) {
         res.status(400).send(error.message);
@@ -81,8 +92,9 @@ app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ where: { username } });
+
         if (!user || !await bcrypt.compare(password, user.password)) {
-            return res.status(401).send('Nieprawidłowe dane logowania');
+            return res.status(401).json({ message: 'Nieprawidłowe dane logowania' });
         }
         const token = jwt.sign({ userId: user.id }, 'secret', { expiresIn: '1h' });
         res.json({ token });

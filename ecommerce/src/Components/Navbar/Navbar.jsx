@@ -22,10 +22,10 @@ const Navbar = () => {
 
       {/* User and Cart links */}
       <div className="user-cart">
-      <a href="/">Home</a>
-      <a href="/products">Products</a>
-        <a href="/cart">Cart</a>
-        <a href="/login">Login</a>
+      <a href="/">Stronga główna</a>
+      <a href="/products">Produkty</a>
+        <a href="/cart">Koszyk</a>
+        <a href="/login">Logowanie</a>
       </div>
     </nav>
     </div>

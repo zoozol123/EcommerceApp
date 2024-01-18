@@ -11,7 +11,7 @@ import ProductView from './Components/ProductView/ProductView';
 
 function App() {
   useEffect(() => {
-    document.title = "EcommerceApp";
+    document.title = "Sklep Odzieżowy";
   }, []);
   
   return (

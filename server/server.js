@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes, Op } = require('sequelize');
 const rateLimit = require('express-rate-limit');
 const app = express();
 
@@ -25,6 +25,8 @@ const User = sequelize.define('User', {
     email: { type: DataTypes.STRING, allowNull: false, unique: true },
     username: { type: DataTypes.STRING, allowNull: false, unique: true },
     password: { type: DataTypes.STRING, allowNull: false }
+}, {
+    timestamps: true, 
 });
 
 const Product = sequelize.define('Product', {
@@ -83,7 +85,7 @@ app.post('/register', async (req, res) => {
         const user = await User.create({ email, username, password: hashedPassword });
         res.status(201).json({ message: "Użytkownik zarejestrowany", userId: user.id });
     } catch (error) {
-        res.status(400).send(error.message);
+        res.status(400).send("error.message");
     }
 });
 

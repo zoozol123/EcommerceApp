@@ -1,7 +1,6 @@
-// Order.jsx
 
 import React, { useState } from 'react';
-import './Order.css'; // Link to the Order CSS file
+import './Order.css'; 
 
 const Order = () => {
   const paymentMethods = ['Karta', 'PayPal', 'Google Pay'];

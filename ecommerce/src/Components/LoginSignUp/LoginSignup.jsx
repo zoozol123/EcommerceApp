@@ -5,9 +5,8 @@ import { faUser, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 
 const LoginSignup = () => {
-    const [action, setAction] = useState("Login"); // Domyślnie ustawione na "Login"
+    const [action, setAction] = useState("Login"); 
     const [email, setEmail] = useState("false");
-    // Komunikaty gdy czegośbrakuje w formularzu
     const [usernameMessage, setUsernameMessage] = useState("false");
     const [password, setPassword] = useState("false");
     const [incorrectLoginOrPassword, setincorrectLoginOrPassword] = useState("false");
@@ -98,7 +97,6 @@ const LoginSignup = () => {
           setincorrectLoginOrPassword(false);
           setLoginOrEmailExists(false);
         } else {
-          // Obsłuż błędy
           console.error(`Komunikat związany z ${action === 'Login' ? 'logowaniem' : 'rejestracją'}`);
           console.error('Status:', response.status);
           console.error('Odpowiedź serwera:', response.data);

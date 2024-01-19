@@ -2,15 +2,15 @@
 
   .container{
     height: 65vh;
-    display: flex; /* Added to make sure content inside is flex */
-    align-items: center; /* Center items horizontally in the container */
-    justify-content: center; /* Center items vertically in the container */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
     
 }
 
   .form {
     margin-top: 10px;
-    width: 800px; /* Width of the container */
+    width: 800px; 
     height: 400px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -21,9 +21,9 @@
 }
 
 .header .text {
-  font-size: 24px; /* Large text for the sign-up */
+  font-size: 24px; 
   text-align: center;
-  color: #333; /* Dark grey text */
+  color: #333; 
 }
 
 .header .underline {

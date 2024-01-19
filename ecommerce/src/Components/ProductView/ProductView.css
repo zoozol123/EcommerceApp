@@ -1,4 +1,3 @@
-/* ProductView.css */
 
 .product-view-container {
     display: grid;
@@ -9,12 +8,12 @@
   
   .product-image img {
     width: 100%;
-    max-width: 100%; /* Maksymalna szerokość obrazu to 100% szerokości kontenera */
+    max-width: 100%; 
     height: 100%;
   }
   
   .product-info {
-    margin-left: 30px; /* Nie ma potrzeby dodatkowego marginesu po lewej stronie */
+    margin-left: 30px; 
   }
   
   .product-info h2 {
@@ -39,12 +38,12 @@
 }
   
   .product-info p {
-    width: 90%; /* Zajmij pełną szerokość tekstu */
+    width: 90%; 
   }
   
   .size-list {
     display: flex;
-    flex-wrap: wrap; /* Elementy owijają się na nowej linii w przypadku małej przestrzeni */
+    flex-wrap: wrap; 
   }
   
   .size-rectangle {

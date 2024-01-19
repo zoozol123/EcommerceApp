@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import './Products.css'; // Link to the Navbar CSS file
-import { Link } from 'react-router-dom'; // Dodany import Link
+import './Products.css'; 
+import { Link } from 'react-router-dom'; 
 
 
 const Products = () => {
   const [productsList, setProductsList] = useState([]);
 
   useEffect(() => {
-    // Pobieranie danych produktów z serwera
     fetch('/products')
       .then(response => response.json())
       .then(data => {
-        // Aktualizacja listy produktów z dynamiczną ścieżką do obrazka
         setProductsList(data.map((product, index) => ({
           ...product,
           image: `/images/popular${product.id}.jpg`
@@ -26,19 +24,15 @@ const Products = () => {
 
  const [currentPage, setCurrentPage] = useState(1);
 
- // Products per page
  const productsPerPage = 9;
 
- // Calculate starting and ending indices of products to display
  const startIndex = (currentPage - 1) * productsPerPage;
  const endIndex = startIndex + productsPerPage;
 
  const compareStrings = (a, b) => {
-    // Funkcja pomocnicza do porównywania stringów z uwzględnieniem wielkości liter
     return a.localeCompare(b, 'pl', { sensitivity: 'base' });
   };
 
-  // Sortowanie według nazwy rosnąco
   const sortAlphabeticallyAsc = (a, b) => {
     return compareStrings(a.name, b.name);
   };
@@ -87,7 +81,6 @@ const Products = () => {
 
  return (
    <div className='product-container'>
-     {/* Search bar */}
      <div className='search-bar'>
        <input
          type='text'
@@ -95,7 +88,6 @@ const Products = () => {
          value={searchQuery}
          onChange={handleSearch}
        />
-       {/* Add sorting options dropdown */}
        <select value={sortOption} onChange={handleSortChange}>
         <option value='default'>Domyślnie...</option>
         <option value='alpha-asc'>Nazwa: A-Z</option>
@@ -105,7 +97,6 @@ const Products = () => {
       </select>
      </div>
      
-      {/* Obszar wyświetlania produktów */}
       <div className='product-display'>
         {paginatedProducts.map((product) => (
        <div className='product-card'>
@@ -119,7 +110,6 @@ const Products = () => {
       </div>
 
 
-     {/* Pagination */}
      <div className='pagination'>
        {Array.from({ length: Math.ceil(filteredProducts.length / productsPerPage) }).map((_, index) => (
          <button

@@ -1,14 +1,13 @@
 .product-container{
  margin:60px 10px;
+ min-height: 42vh;
 }
 
-/* Products.css */
 
-/* Search bar styling */
 .search-bar {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px; /* Adjust margin as needed */
+    margin-bottom: 20px; 
     gap: 30px;
   }
   
@@ -31,7 +30,6 @@
     border-radius: 5px;
   }
   
-  /* Sorting options dropdown styling */
   .search-bar select {
     width: 10%;
     padding: 10px;
@@ -41,7 +39,7 @@
   }
   
   .product-display {
-    margin: 50px 70px; /* Center the product display area */
+    margin: 50px 70px; 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
@@ -51,7 +49,7 @@
   .product-card {
     width: 300px;
     height: 420px;
-    margin: 0 auto; /* Center the product card within the grid column */
+    margin: 0 auto;
     border: 1px solid #DAE4EB;
     padding: 30px;
     text-align: center;
@@ -74,14 +72,14 @@
 }
 
 .addToCart.added {
-    background-color: #3B6371; /* Darker color when added to cart */
-    color: white; /* White text color when added to cart */
+    background-color: #3B6371;
+    color: white; 
 
   }
   .product-link {
-    text-decoration: none; /* Usunięcie domyślnego podkreślenia linku */
-    color: inherit; /* Dziedziczenie koloru tekstu */
-    cursor: pointer; /* Zmiana kursora po najechaniu na kartę */
+    text-decoration: none; 
+    color: inherit; 
+    cursor: pointer; 
   }
   
   
@@ -105,12 +103,12 @@
   .pagination button.active {
     font-weight: bold;
     color: #ffff;
-    background-color: #5F849C; /* Change to the desired color for the active page */
+    background-color: #5F849C; 
   }
   
   @media screen and (max-width: 1200px) {
     .product-display {
-      grid-template-columns: repeat(2, 1fr); /* Two products in a row for screens up to 1200px */
+      grid-template-columns: repeat(2, 1fr);
     }
     .search-bar input {
         width: 70%;
@@ -126,6 +124,6 @@
   
   @media screen and (max-width: 600px) {
     .product-display {
-      grid-template-columns: repeat(1, 1fr); /* One product in a row for screens up to 600px */
+      grid-template-columns: repeat(1, 1fr); 
     }
   }

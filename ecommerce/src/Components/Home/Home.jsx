@@ -62,8 +62,7 @@ const Home = () => {
         <div className='border'>
 
           <a href="/reviews">
-            <h2>STRONA</h2>
-            <h2>GŁÓWNA</h2>
+            <h2>OPINIE</h2>
           </a>
           </div>
 

@@ -1,20 +1,18 @@
-/* Styling for the responsive image */
 .mainbanner img {
     margin-top: 60px;
     margin-bottom: 50px;
     width: 100%;
-    max-height: 80vh;
+    max-height: 800px;
     display: block;
   }
 
- /* Styling for the category section */
 .category-section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     padding-top: 70px;
-    margin: auto auto; /* Center the row and add margin */
-    width: 80%; /* Adjust the width as needed */
+    margin: auto auto; 
+    width: 90%; 
     min-height: 40vh;
     gap: 40px;
 
@@ -22,14 +20,13 @@
   
   .category-square {
     width: 280px;
-    margin: 10px; /* Adjust margin between squares */
+    margin: 10px; 
     height: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  /* Styling for each category square */
 .category-square:nth-child(1) {
     background-color: #5F849C;
   }
@@ -48,7 +45,7 @@
   
   .category-square a {
     text-decoration: none;
-    color: #fff; /* Adjust text color */
+    color: #fff; 
   }
 
   .border{
@@ -61,32 +58,30 @@
   }
 
 
- /* Styling for popular products section */
 .popular-products-section {
-    margin: 40px 30px;
-    min-height: 40vh;
+    margin: 100px 30px;
+    min-height: 30vh;
     padding-bottom: 50px;
 }
 
 .photos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 10px; /* Adjust the gap between images */
+    gap: 10px; 
     border-top: 1px solid #5F849C;
     padding-top: 70px;
 }
 
-/* Style each image */
 .photos img {
-    width: 100%; /* Adjust the width of each image as needed */
-    height: 250px; /* Adjust the height of each image as needed */
-    object-fit: cover; /* Maintain aspect ratio */
+    width: 100%; 
+    height: 250px; 
+    object-fit: cover; 
 }
 
 .popular-products-section button{
     height: 50px;
     width: 300px;
-    margin: 30px 10px;
+    margin: 50px 10px;
     background-color: #DAE4EB;
     border: none;
     font-size: 20px;
@@ -98,12 +93,11 @@
 .benefits {
     display: flex;
     flex-direction: column;
-    margin: 40px 30px; /* Adjust margin as needed */
+    margin: 40px 30px; 
 }
 
 .benefits h2 {
-    margin-bottom: 20px; /* Add space between heading and benefit squares */
-
+    margin-bottom: 20px;
 }
 
 .benefits-row {
@@ -122,10 +116,9 @@
     width: 350px;
     height: 200px;
     border: 3px solid #5F849C;
-    text-align: center; /* Center text inside the benefit square */
+    text-align: center; 
 }
 
-/* Media queries for responsiveness */
 @media (max-width: 1200px) {
     .category-section {
         width: 90%;

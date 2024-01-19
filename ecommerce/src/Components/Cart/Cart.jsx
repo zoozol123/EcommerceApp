@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Cart.css'; // Link to the Navbar CSS file
+import './Cart.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTrash} from '@fortawesome/free-solid-svg-icons'
 
@@ -11,8 +11,8 @@ const Cart = () => {
     { id: 3, name: 'Product 3', price: 25, image: '/images/popular3.jpg', quantity: 1 },
   ]);
 
-  const paymentMethods = ['Credit Card', 'PayPal', 'Stripe']; // Dodane metody płatności
-  const shippingMethods = ['Standard Delivery', 'Express Delivery', 'Pickup']; // Dodane metody dostawy
+  const paymentMethods = ['Credit Card', 'PayPal', 'Stripe']; 
+  const shippingMethods = ['Standard Delivery', 'Express Delivery', 'Pickup']; 
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(paymentMethods[0]);
   const [selectedShippingMethod, setSelectedShippingMethod] = useState(shippingMethods[0]);
@@ -21,26 +21,19 @@ const Cart = () => {
   const hasItems = cartItems && cartItems.length > 0;
 
   const handleQuantityChange = (itemId, newQuantity) => {
-    // Aktualizacja ilości produktu w koszyku
     const updatedCartItems = cartItems.map((item) =>
       item.id === itemId ? { ...item, quantity: newQuantity } : item
     );
-    // Aktualizacja stanu
     setCartItems(updatedCartItems);
   };
 
   const handleRemoveItem = (itemId) => {
-    // Usunięcie produktu z koszyka
     const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
-    // Aktualizacja stanu
     setCartItems(updatedCartItems);
   };
 
   const handleProceedToCheckout = () => {
-    // Tutaj można dodać logikę związana z finalizacją zakupów
-    // np. wysyłanie zamówienia do serwera, aktualizacja stanu itp.
-
-    // Po zrealizowaniu zakupów ustaw flagę isCheckoutComplete na true
+   
     setCheckoutComplete(true);
   };
 

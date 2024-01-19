@@ -9,7 +9,6 @@ const ProductView = ({ match }) => {
   const [addedToCart, setAddedToCart] = useState(false);
 
   useEffect(() => {
-    // Pobieranie danych konkretnego produktu z serwera
     fetch(`/product/${productId}`)
     .then(response => response.json())
     .then(data => setProduct(data))
@@ -76,7 +75,6 @@ const ProductView = ({ match }) => {
         </button>
 
         <p>{product?.description}</p>
-        {/* Dodaj inne informacje o produkcie, jeśli są dostępne */}
         <br></br>
 
         <h3>Szczegółu produktu:</h3>

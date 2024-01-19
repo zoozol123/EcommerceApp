@@ -6,7 +6,7 @@
 .shopping-cart-container img {
     width: 200px;
     height: auto;
-    margin-right: 100px; /* Zdjęcie po lewej stronie */
+    margin-right: 100px; 
     display: flex;
     justify-content: flex-start;
 }

@@ -1,7 +1,6 @@
-// Home.js
 import React, { useEffect } from 'react';
-import './Home.css'; // Link to the Navbar CSS file
-import { Link } from 'react-router-dom'; // Dodaj ten import
+import './Home.css'; 
+import { Link } from 'react-router-dom'; 
 
 
 const Home = () => {
@@ -19,15 +18,10 @@ const Home = () => {
         { id: 10, image: "/images/popular10.jpg", description: "Product 2 Description" },
         { id: 11, image: "/images/popular11.jpg", description: "Product 1 Description" },
         { id: 12, image: "/images/popular12.jpg", description: "Product 2 Description" },
-        // Dodaj więcej produktów, jeśli potrzebujesz
       ];
     
-      // Funkcja do obsługi kliknięcia na produkt
       const handleProductClick = (productId) => {
-        // Nawiguj do widoku ProductView z wybranym identyfikatorem produktu
-        // Możesz użyć Link do nawigacji lub innej funkcji zgodnej z Twoim frameworkiem routingu
-        // Na przykład, jeśli używasz React Router, to zamiast navigateToProductView użyj history.push
-        //history.push(`/product/${productId}`);
+   
       };
   return (
     <div>
@@ -38,7 +32,7 @@ const Home = () => {
       <div className="category-section">
         <div className="category-square">
             <div className='border'>
-          <a href="/categories">
+          <a href="/products">
             <h2>NOWOŚCI</h2>
           </a>
           </div>
@@ -46,7 +40,7 @@ const Home = () => {
 
         <div className="category-square">
         <div className='border'>
-          <a href="/popular-products">
+          <a href="/products">
             <h2>KOBIETY</h2>
           </a>
           </div>
@@ -54,7 +48,7 @@ const Home = () => {
 
         <div className="category-square">
         <div className='border'>
-          <a href="/reviews"> <h2>MĘŻCZYŹNI</h2></a>
+          <a href="/products"> <h2>MĘŻCZYŹNI</h2></a>
           </div>
         </div>
 
@@ -74,7 +68,6 @@ const Home = () => {
         <h2> POPULARNE PRODUKTY</h2>
         <div className='photos'>
           {popularProducts.map((product) => (
-            // Zmieniłem <img> na <Link> do nawigacji do widoku ProductView po kliknięciu
             <Link key={product.id} to={`/product/${product.id}`}>
               <img
                 src={product.image}

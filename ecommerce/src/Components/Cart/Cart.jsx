@@ -76,7 +76,7 @@ const Cart = () => {
                   </li>
                 ))}
               </ul>
-              <a className='purchase-details' href="/purchase-details"><button>Purchase Details</button></a>
+              <a className='purchase-details' href="/purchase-details"><button>Szczegóły dostawy</button></a>
 
          
             </div>

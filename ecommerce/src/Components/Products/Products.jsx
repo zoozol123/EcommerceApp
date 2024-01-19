@@ -20,13 +20,10 @@ const Products = () => {
       .catch(error => console.error('Błąd podczas pobierania danych produktów:', error));
   }, []);
   
- // State for search query
+ 
  const [searchQuery, setSearchQuery] = useState('');
-
- // State for sorting option
  const [sortOption, setSortOption] = useState('default');
 
- // State for current page
  const [currentPage, setCurrentPage] = useState(1);
 
  // Products per page
@@ -36,49 +33,57 @@ const Products = () => {
  const startIndex = (currentPage - 1) * productsPerPage;
  const endIndex = startIndex + productsPerPage;
 
+ const compareStrings = (a, b) => {
+    // Funkcja pomocnicza do porównywania stringów z uwzględnieniem wielkości liter
+    return a.localeCompare(b, 'pl', { sensitivity: 'base' });
+  };
+
+  // Sortowanie według nazwy rosnąco
+  const sortAlphabeticallyAsc = (a, b) => {
+    return compareStrings(a.name, b.name);
+  };
+
+  // Sortowanie według nazwy malejąco
+  const sortAlphabeticallyDesc = (a, b) => {
+    return compareStrings(b.name, a.name);
+  };
+
  // Filter products based on search query and sort option
  const filteredProducts = productsList
-   .filter((product) =>
-     product.name.toLowerCase().includes(searchQuery.toLowerCase())
-   )
-   .sort((a, b) => {
-     if (sortOption === 'default') {
-       // Implement default sorting logic
-       return a.id - b.id;
-     }
-     // Implement additional sorting logic as needed
-   });
+  .filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+  .sort((a, b) => {
+    if (sortOption === 'default') {
+      return a.id - b.id;
+    } else if (sortOption === 'price-asc') {
+      return a.price - b.price;
+    } else if (sortOption === 'price-desc') {
+      return b.price - a.price;
+    } else if (sortOption === 'alpha-asc') {
+      return sortAlphabeticallyAsc(a, b);
+    } else if (sortOption === 'alpha-desc') {
+      return sortAlphabeticallyDesc(a, b);
+    }
+    // Dodaj więcej opcji sortowania, jeśli potrzebujesz
+  });
 
- // Paginated products to display
- const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+  // Paginated products to display
+  const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
 
- // Function to handle search input
- const handleSearch = (e) => {
-   setSearchQuery(e.target.value);
-   setCurrentPage(1); // Reset page when search query changes
- };
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1); 
+  };
 
- // Function to handle sorting option change
- const handleSortChange = (e) => {
-   setSortOption(e.target.value);
-   setCurrentPage(1); // Reset page when sort option changes
- };
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);
+    setCurrentPage(1); 
+  };
 
- // Function to handle page change
- const handlePageChange = (newPage) => {
-   setCurrentPage(newPage);
- };
-
-   // State for tracking whether the product is added to cart
-   const [addedToCart, setAddedToCart] = useState(Array(productsList.length).fill(false));
-
-   // Function to handle adding to cart
-   const handleAddToCart = (productId) => {
-     // Update the addedToCart state for the specific product
-     const updatedAddedToCart = [...addedToCart];
-     updatedAddedToCart[productId - 1] = true; // Assuming product IDs start from 1
-     setAddedToCart(updatedAddedToCart);
-   };
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
 
  return (
    <div className='product-container'>
@@ -92,9 +97,12 @@ const Products = () => {
        />
        {/* Add sorting options dropdown */}
        <select value={sortOption} onChange={handleSortChange}>
-         <option value='default'>Default Sorting</option>
-         {/* Add more sorting options as needed */}
-       </select>
+        <option value='default'>Domyślnie...</option>
+        <option value='alpha-asc'>Nazwa: A-Z</option>
+        <option value='alpha-desc'>Nazwa: Z-A</option>
+        <option value='price-asc'>Cena: rosnąco</option>
+        <option value='price-desc'>Cena: malejąco</option>
+      </select>
      </div>
      
       {/* Obszar wyświetlania produktów */}
@@ -106,14 +114,6 @@ const Products = () => {
           <h3>{product.name}</h3>
           <p>Cena: {product.price} zł</p>
         </Link>
-
-         {/*<button
-           className={`addToCart ${addedToCart[product.id - 1] ? 'added' : ''}`}
-           onClick={() => handleAddToCart(product.id)}
-           disabled={addedToCart[product.id - 1]}
-         >
-           {addedToCart[product.id - 1] ? 'Added' : 'Add to cart'}
-        </button>*/}
        </div>     
         ))}
       </div>

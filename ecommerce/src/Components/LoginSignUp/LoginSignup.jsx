@@ -7,7 +7,8 @@ import axios from 'axios';
 const LoginSignup = () => {
     const [action, setAction] = useState("Login"); // Domyślnie ustawione na "Login"
     const [email, setEmail] = useState("false");
-    const [username, setUsername] = useState("false");
+    // Komunikaty gdy czegośbrakuje w formularzu
+    const [usernameMessage, setUsernameMessage] = useState("false");
     const [password, setPassword] = useState("false");
     const [incorrectLoginOrPassword, setincorrectLoginOrPassword] = useState("false");
     const [loginlOrEmailExists, setLoginOrEmailExists] = useState("false");
@@ -63,7 +64,7 @@ const LoginSignup = () => {
 
     const setFalse = () => {
       setEmail(false);
-      setUsername(false);
+      setUsernameMessage(false);
       setPassword(false);
       setEmailCorrect(false);
       setLoginOrEmailExists(false);
@@ -75,7 +76,7 @@ const LoginSignup = () => {
     
       if (!isFormFilled()) {
         if(!isEmailFilled()) setEmail(true);
-        if(!isUsernamelFilled()) setUsername(true);
+        if(!isUsernamelFilled()) setUsernameMessage(true);
         if(!isPasswordFilled()) setPassword(true);
         if(formData.email !== '') {
           if(!isValidEmail(formData.email)) setEmailCorrect(true);
@@ -152,7 +153,7 @@ const LoginSignup = () => {
                    onChange={handleInputChange}
                  />
                 </div>
-                {username ===true?<div className='error-message'>Podaj nazwę użytkownika aby się zarejestrować.</div>: <div></div>}
+                {usernameMessage ===true?<div className='error-message'>Podaj nazwę użytkownika aby się zarejestrować.</div>: <div></div>}
                 
                 <div className='input'>
                 <FontAwesomeIcon className="input-icon" icon={faLock} />
@@ -165,8 +166,8 @@ const LoginSignup = () => {
                  />
                 </div>
                 {password ===true?<div className='error-message'>Podaj hasło aby się zarejestrować.</div>: <div></div>}
-                {incorrectLoginOrPassword ===true?<div className='error-message'>Podana nazwa użytkownika lub hasło są nieprawidłowe</div>: <div></div>}
-                {loginlOrEmailExists ===true?<div className='error-message'>Istnieje już konto o podanym email lub nazwie użytkownika</div>: <div></div>}
+                {incorrectLoginOrPassword ===true?<div className='error-message'>Podana nazwa użytkownika lub hasło są nieprawidłowe.</div>: <div></div>}
+                {loginlOrEmailExists ===true?<div className='error-message'>Istnieje już konto o podanym email lub nazwie użytkownika.</div>: <div></div>}
             </div>
 
 

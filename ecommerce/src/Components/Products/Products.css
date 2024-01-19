@@ -19,6 +19,17 @@
     border: 1px solid #5F849C;
 
   }
+
+  .search-bar button {
+    width: 6%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #5F849C;
+    background-color: rgb(23, 91, 128);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+  }
   
   /* Sorting options dropdown styling */
   .search-bar select {

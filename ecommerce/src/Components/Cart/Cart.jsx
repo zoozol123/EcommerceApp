@@ -70,7 +70,9 @@ const Cart = () => {
                 ))}
               </ul>
               <p className='summary-price'>Suma: {totalPrice.toFixed(2)} zł</p>
-              <a className='purchase-details' href="/purchase-details"><button>Szczegóły dostawy</button></a>
+              {sessionStorage.getItem('logged') ==='true'?
+                <a className='purchase-details' href="/purchase-details"><button>Szczegóły dostawy</button></a>: 
+                <a className='purchase-details' href="/login"><button>Szczegóły dostawy</button></a>  }
             </div>
           ) : (
             <p className="empty-cart-message">Twój koszyk jest pusty.</p>

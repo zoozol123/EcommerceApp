@@ -93,10 +93,12 @@ const LoginSignup = () => {
         }
     
         if (response.status === 200 || response.status === 201) {
-          sessionStorage.removeItem('cart');
           const sessionLogin = formData.username;
           const token = response.data.token;
           sessionStorage.setItem('authToken', token);
+
+          sessionStorage.setItem('logged', 'true');
+          console.log(sessionStorage.getItem('logged'));
 
           console.log(`Użytkownik ${action === 'Login' ? 'zalogowany!' : 'zarejestrowany!'}`);
           setincorrectLoginOrPassword(false);
@@ -122,6 +124,13 @@ const LoginSignup = () => {
         password: ""
       });
     };
+
+    const handleLogout = async (e) => {
+      sessionStorage.setItem('logged', 'false')
+      sessionStorage.removeItem('cart');
+      sessionStorage.removeItem('authToken');
+      window.location.reload();
+    }
 
   return (
     <div className='container'>
@@ -174,16 +183,12 @@ const LoginSignup = () => {
                 {loginlOrEmailExists ===true?<div className='error-message'>Istnieje już konto o podanym email lub nazwie użytkownika.</div>: <div></div>}
             </div>
 
-
-            {/*action ==='Sign Up'?<div></div>: <div className="forgot-password">Lost Password? <span>Click here</span></div>*/}
-
-           
-
             <div className="submit-container">
                 <div className={action==='Login'?'submit gray':'submit'} onClick={()=>{setAction("Sign Up"); setFalse(); }}>Rejestracja</div>
                 <div className={action==='Sign Up'?'submit gray':'submit'} onClick={()=>{setAction("Login"); setFalse(); }}>Logowanie</div>
-                <div className='submitButton' onClick={()=>{ setFalse(); handleSubmit(); }}>Zatwierdź</div>  
-                {/*<div className={action==='Login'?'submit gray':'submit'} onClick={()=>{  }}>Wyloguj</div>*/}                
+                {sessionStorage.getItem('logged') ==='true'?
+                <div className='submitButton' onClick={()=>{ handleLogout(); }}>Wyloguj</div>: 
+                <div className='submitButton' onClick={()=>{ setFalse(); handleSubmit(); }}>Zatwierdź</div>  }           
             </div>
         </div>
     </div>

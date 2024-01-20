@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css'; 
 
 
 const Navbar = () => {
+
   return (
 
     <div>
@@ -17,8 +18,8 @@ const Navbar = () => {
 
 
       <div className="user-cart">
-      <a href="/">Strona główna</a>
-      <a href="/products">Produkty</a>
+        <a href="/">Strona główna</a>
+        <a href="/products">Produkty</a>
         <a href="/cart">Koszyk</a>
         <a href="/login">Logowanie</a>
       </div>

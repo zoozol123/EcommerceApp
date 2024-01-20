@@ -1,40 +1,40 @@
-import React, { useState } from 'react';
-import './Cart.css';
+import React, { useState, useEffect } from 'react';
+import './Cart.css'; // Link to the Navbar CSS file
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTrash} from '@fortawesome/free-solid-svg-icons'
 
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Product 1', price: 20, image: '/images/popular1.jpg', quantity: 1 },
-    { id: 2, name: 'Product 2', price: 30, image: '/images/popular2.jpg', quantity: 1 },
-    { id: 3, name: 'Product 3', price: 25, image: '/images/popular3.jpg', quantity: 1 },
-  ]);
-
-  const paymentMethods = ['Credit Card', 'PayPal', 'Stripe']; 
-  const shippingMethods = ['Standard Delivery', 'Express Delivery', 'Pickup']; 
-
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(paymentMethods[0]);
-  const [selectedShippingMethod, setSelectedShippingMethod] = useState(shippingMethods[0]);
+  const [cartItems, setCartItems] = useState(JSON.parse(sessionStorage.getItem('cart')) || []);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('Credit Card');
+  const [selectedShippingMethod, setSelectedShippingMethod] = useState('Standard Delivery');
   const [isCheckoutComplete, setCheckoutComplete] = useState(false);
+
+  useEffect(() => {
+    // Obliczanie sumy cen produktów w koszyku za każdym razem, gdy koszyk się zmienia
+    const newTotalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    setTotalPrice(newTotalPrice);
+  }, [cartItems]);
 
   const hasItems = cartItems && cartItems.length > 0;
 
   const handleQuantityChange = (itemId, newQuantity) => {
     const updatedCartItems = cartItems.map((item) =>
-      item.id === itemId ? { ...item, quantity: newQuantity } : item
+      item.productId === itemId ? { ...item, quantity: newQuantity } : item
     );
     setCartItems(updatedCartItems);
+    sessionStorage.setItem('cart', JSON.stringify(updatedCartItems));
   };
 
-  const handleRemoveItem = (itemId) => {
-    const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
+  function handleRemoveItem (itemId) {
+    console.log('Przed usunięciem:', cartItems);
+    const updatedCartItems = cartItems.filter((item) => item.productId !== itemId);
+    console.log('Po usunięciu:', updatedCartItems);
     setCartItems(updatedCartItems);
-  };
 
-  const handleProceedToCheckout = () => {
-   
-    setCheckoutComplete(true);
+    // Zapisz zaktualizowany koszyk do sessionStorage
+    sessionStorage.setItem('cart', JSON.stringify(updatedCartItems));
   };
 
   return (
@@ -46,35 +46,34 @@ const Cart = () => {
       ) : (
         <div>
           <h2>Koszyk</h2>
-          {hasItems ? (
+          {cartItems && cartItems.length > 0 ? (
             <div className="cart-content">
               <ul>
                 {cartItems.map((item) => (
-                  <li key={item.id}>
-                    <img src={item.image} alt={item.name} />
+                  <li key={item?.productId}>
+                    <img src={`/images/popular${item?.productId}.jpg`} alt={item?.productName} />
                     <div className='details-info'>
-                      <h3>{item.name}</h3>
-                      <p>Cena: {item.price} zł</p>
+                      <h3>{item?.productName}</h3>
+                      <p>Cena: {(item?.price * item?.quantity).toFixed(2)} zł</p>
                       <label>
                         Ilość:
                         <input
                           type="number"
                           min="1"
-                          value={item.quantity}
-                          onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
+                          value={item?.quantity}
+                          onChange={(e) => handleQuantityChange(item.productId, parseInt(e.target.value))}
                         />
                       </label>
-                      <button className="input-icon"><FontAwesomeIcon  icon={faTrash} /></button>
+                      <button className="input-icon" onClick={()=>{ handleRemoveItem(item.productId); }}><FontAwesomeIcon icon={faTrash} /></button>
                     </div>
                   </li>
                 ))}
               </ul>
+              <p className='summary-price'>Suma: {totalPrice.toFixed(2)} zł</p>
               <a className='purchase-details' href="/purchase-details"><button>Szczegóły dostawy</button></a>
-
-         
             </div>
           ) : (
-            <p className="empty-cart-message">Your cart is empty.</p>
+            <p className="empty-cart-message">Twój koszyk jest pusty.</p>
           )}
         </div>
       )}

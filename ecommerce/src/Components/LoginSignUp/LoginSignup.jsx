@@ -93,6 +93,11 @@ const LoginSignup = () => {
         }
     
         if (response.status === 200 || response.status === 201) {
+          sessionStorage.removeItem('cart');
+          const sessionLogin = formData.username;
+          const token = response.data.token;
+          sessionStorage.setItem('authToken', token);
+
           console.log(`Użytkownik ${action === 'Login' ? 'zalogowany!' : 'zarejestrowany!'}`);
           setincorrectLoginOrPassword(false);
           setLoginOrEmailExists(false);
@@ -163,7 +168,8 @@ const LoginSignup = () => {
                    onChange={handleInputChange}
                  />
                 </div>
-                {password ===true?<div className='error-message'>Podaj hasło aby się zarejestrować.</div>: <div></div>}
+                {password ===true && action === 'Sign Up'?<div className='error-message'>Podaj hasło aby się zarejestrować.</div>: <div></div>}
+                {password ===true && action === 'Login'?<div className='error-message'>Podaj hasło aby się zalogować.</div>: <div></div>}
                 {incorrectLoginOrPassword ===true?<div className='error-message'>Podana nazwa użytkownika lub hasło są nieprawidłowe.</div>: <div></div>}
                 {loginlOrEmailExists ===true?<div className='error-message'>Istnieje już konto o podanym email lub nazwie użytkownika.</div>: <div></div>}
             </div>
@@ -176,7 +182,8 @@ const LoginSignup = () => {
             <div className="submit-container">
                 <div className={action==='Login'?'submit gray':'submit'} onClick={()=>{setAction("Sign Up"); setFalse(); }}>Rejestracja</div>
                 <div className={action==='Sign Up'?'submit gray':'submit'} onClick={()=>{setAction("Login"); setFalse(); }}>Logowanie</div>
-                <div className='submitButton' onClick={()=>{ setFalse(); handleSubmit(); }}>Zatwierdź</div>                 
+                <div className='submitButton' onClick={()=>{ setFalse(); handleSubmit(); }}>Zatwierdź</div>  
+                {/*<div className={action==='Login'?'submit gray':'submit'} onClick={()=>{  }}>Wyloguj</div>*/}                
             </div>
         </div>
     </div>

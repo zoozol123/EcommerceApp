@@ -102,6 +102,9 @@ const Order = () => {
   }
 
   const handleProceedToCheckout = () => {
+    const authToken = sessionStorage.getItem('authToken');
+    console.log(authToken);
+
     if(isFormFilled()) {
       if (name.trim() === '') {
         setNameMessage(true);
@@ -153,10 +156,13 @@ const Order = () => {
   return (
     <div className={`order-summary ${isOrderComplete ? 'order-complete' : ''}`}>
       {isOrderComplete ? (
+      <div>
+        {sessionStorage.removeItem('cart')}
         <div className="order-complete-message">
           <p>Twoje zamówienie zostało złożone!</p>
         </div>
-      ) : (
+      </div>
+    ) : (
         <>
       <h3>Podsumowanie zamówienia</h3>
       <div className='personal-data'>

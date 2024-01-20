@@ -3,9 +3,15 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { Sequelize, DataTypes, Op } = require('sequelize');
 const rateLimit = require('express-rate-limit');
+const session = require('express-session');
 const app = express();
 
 app.use(express.json());
+app.use(session({
+    secret: 'secret-key', // Dowolny sekretny klucz do podpisu ciasteczek sesji
+    resave: false,
+    saveUninitialized: true,
+}));
 
 // Ograniczanie liczby zapytań
 const limiter = rateLimit({
@@ -58,8 +64,11 @@ const verifyToken = (req, res, next) => {
         return res.status(403).send('Wymagany jest token do autentykacji');
     }
     try {
-        const decoded = jwt.verify(token, 'secret');
-        req.user = decoded;
+        const decoded = jwt.verify(token, 'secret-key');
+        req.session.user = {
+            userId: decoded.userId,
+            // Inne informacje o użytkowniku, które chcesz przechowywać
+        };
         next();
     } catch (err) {
         return res.status(401).send('Nieprawidłowy token');
@@ -98,8 +107,15 @@ app.post('/login', async (req, res) => {
         if (!user || !await bcrypt.compare(password, user.password)) {
             return res.status(401).json({ message: 'Nieprawidłowe dane logowania' });
         }
-        const token = jwt.sign({ userId: user.id }, 'secret', { expiresIn: '1h' });
+
+        req.session.user = {
+            userId: user.id,
+            username: user.username,
+        };
+
+        const token = jwt.sign({ userId: user.id }, 'secret-key', { expiresIn: '1h' });
         res.json({ token });
+        req.session.cart = [];
     } catch (error) {
         res.status(500).send(error.message);
     }

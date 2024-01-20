@@ -32,12 +32,20 @@ const ProductView = ({ match }) => {
   };
 
   const handleAddToCart = () => {
-    // Tutaj możesz dodać logikę związana z dodawaniem produktu do koszyka
-    // Na przykład, możesz użyć stanu globalnego, kontekstu lub przekazać funkcję z rodzica
-    // która zajmuje się dodawaniem produktu do koszyka
+    const cartItem = {
+      productId: product?.id,
+      productName: product?.name,
+      selectedSizes: selectedSizes,
+      quantity: selectedSizes.length,
+      price: product?.price,
+    };
+
+    const existingCart = JSON.parse(sessionStorage.getItem('cart')) || [];
+    const updatedCart = [...existingCart, cartItem];
+    sessionStorage.setItem('cart', JSON.stringify(updatedCart));
 
     console.log('Dodano do koszyka:', product?.name, 'Rozmiary:', selectedSizes);
-    history.push('/cart');
+    history.push('/products');
   };
 
   return (
@@ -50,7 +58,6 @@ const ProductView = ({ match }) => {
         <h3>Cena: {product?.price} zł</h3>
         <p>ROZMIARY</p>
         
-        {/* Lista prostokątnych przycisków z numerami rozmiarów */}
         <div className="size-list">
           {[...Array(15).keys()].map((size) => (
             <button

@@ -96,9 +96,9 @@ const LoginSignup = () => {
           const sessionLogin = formData.username;
           const token = response.data.token;
           sessionStorage.setItem('authToken', token);
-
           sessionStorage.setItem('logged', 'true');
-          console.log(sessionStorage.getItem('logged'));
+          
+          console.log(sessionStorage.getItem('authToken'));
 
           console.log(`Użytkownik ${action === 'Login' ? 'zalogowany!' : 'zarejestrowany!'}`);
           setincorrectLoginOrPassword(false);

@@ -33,7 +33,6 @@ const Cart = () => {
     console.log('Po usunięciu:', updatedCartItems);
     setCartItems(updatedCartItems);
 
-    // Zapisz zaktualizowany koszyk do sessionStorage
     sessionStorage.setItem('cart', JSON.stringify(updatedCartItems));
   };
 
@@ -71,7 +70,7 @@ const Cart = () => {
               </ul>
               <p className='summary-price'>Suma: {totalPrice.toFixed(2)} zł</p>
               {sessionStorage.getItem('logged') ==='true'?
-                <a className='purchase-details' href="/purchase-details"><button>Szczegóły dostawy</button></a>: 
+                <a className='purchase-details' href="/purchase-details"><button>Szczegóły dostawy</button></a> : 
                 <a className='purchase-details' href="/login"><button>Szczegóły dostawy</button></a>  }
             </div>
           ) : (

@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import './Order.css'; 
+import axios from 'axios';
 
 const Order = () => {
   const paymentMethods = ['Karta', 'PayPal', 'Google Pay'];
@@ -101,10 +102,7 @@ const Order = () => {
     }
   }
 
-  const handleProceedToCheckout = () => {
-    const authToken = sessionStorage.getItem('authToken');
-    console.log(authToken);
-
+  const handleProceedToCheckout = async () => {
     if(isFormFilled()) {
       if (name.trim() === '') {
         setNameMessage(true);
@@ -149,7 +147,30 @@ const Order = () => {
       return;
     }
     if(isFormFilled() === false) {
-      setOrderComplete(true);
+      try {
+        const authToken = sessionStorage.getItem('authToken');
+        const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+        const response = await axios.post('/order', { cart }, {
+          headers: {
+            Authorization: authToken,
+          },
+        });
+  
+        console.log(response);  
+
+        if (response.status === 201) {
+          console.log('Zamówienie złożone pomyślnie!');
+          console.log('ID zamówienia:', response.data.orderId);
+          setOrderComplete(true);
+          sessionStorage.removeItem('cart');
+        } else {
+          console.error('Błąd przy złożeniu zamówienia. Status:', response.status);
+          console.error('Treść błędu:', response.data);
+        }
+      } catch (error) {
+        console.error('Błąd podczas złożenia zamówienia:', error);
+      }
     }
   };
 
@@ -228,7 +249,7 @@ const Order = () => {
           ))}
         </select>
       </label>
-          <button onClick={()=>{ setMessagesFalse(); handleProceedToCheckout(); console.log(isOrderComplete)}}>Zamów</button>
+          <button onClick={()=>{ setMessagesFalse(); handleProceedToCheckout(); }}>Zamów</button>
         </>
       )}
     </div>

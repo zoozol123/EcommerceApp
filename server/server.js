@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json());
 app.use(session({
-    secret: 'secret-key', // Dowolny sekretny klucz do podpisu ciasteczek sesji
+    secret: 'secret', // Dowolny sekretny klucz do podpisu ciasteczek sesji
     resave: false,
     saveUninitialized: true,
 }));
@@ -64,10 +64,11 @@ const verifyToken = (req, res, next) => {
         return res.status(403).send('Wymagany jest token do autentykacji');
     }
     try {
-        const decoded = jwt.verify(token, 'secret-key');
+        console.log('Przed dekodowaniem tokenu');
+        const decoded = jwt.verify(token, 'secret');
+        console.log('Po dekodowaniu tokenu:', decoded);
         req.session.user = {
             userId: decoded.userId,
-            // Inne informacje o użytkowniku, które chcesz przechowywać
         };
         next();
     } catch (err) {
@@ -113,7 +114,7 @@ app.post('/login', async (req, res) => {
             username: user.username,
         };
 
-        const token = jwt.sign({ userId: user.id }, 'secret-key', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user.id }, 'secret', { expiresIn: '1h' });
         res.json({ token });
         req.session.cart = [];
     } catch (error) {
@@ -167,11 +168,12 @@ app.get('/product/:productId', async (req, res) => {
 // Składanie zamówienia
 app.post('/order', verifyToken, async (req, res) => {
     try {
-        const { productIds } = req.body; // Array of product IDs
+        const { cart } = req.body; // Array of product IDs
+        const productIds = cart.map(item => item.productId);
         const products = await Product.findAll({ where: { id: productIds } });
-        const totalAmount = products.reduce((sum, product) => sum + product.price, 0);
+        const totalAmount = cart.reduce((sum, cartItem) => sum + cartItem.quantity * cartItem.price, 0);
 
-        const order = await Order.create({ totalAmount, UserId: req.user.userId });
+        const order = await Order.create({ totalAmount, UserId: req.session.user.userId });
         await order.addProducts(products.map(product => product.id));
 
         res.status(201).json({ message: 'Zamówienie złożone', orderId: order.id });

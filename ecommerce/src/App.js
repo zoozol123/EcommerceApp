@@ -8,6 +8,7 @@ import Products from './Components/Products/Products';
 import Cart from './Components/Cart/Cart';
 import Order from './Components/Order/Order';
 import ProductView from './Components/ProductView/ProductView';
+import Admin from './Components/Admin/Admin';
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/product/:productId" component={ProductView} />
         <Route path="/cart" component={Cart} />
         <Route path="/purchase-details" component={Order} />
+        <Route path="/admin" component={Admin} />
 
 
 

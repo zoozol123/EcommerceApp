@@ -63,13 +63,13 @@
   }
   
 
-.forgot-password {
+.administrator-panel {
   text-align: center;
   margin: 20px 0;
   cursor: pointer;
 }
 
-.forgot-password span {
+.administrator-panel span {
   text-decoration: underline; /* Underline on hover or click */
   color: #5F849C; /* Blue text for clickable link */
 

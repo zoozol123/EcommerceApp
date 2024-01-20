@@ -132,43 +132,90 @@ app.get('/products', async (req, res) => {
     }
 });
 
-// Dodawanie produktu
-app.post('/products', async (req, res) => {
-    try {
-        const { name, price, description } = req.body;
-        const product = await Product.create({ name, price, description });
-        res.status(201).json(product);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-});
-
 // Wyświetlanie konkretnego produktu
 app.get('/product/:productId', async (req, res) => {
     try {
         const productId = req.params.productId;
 
-        // Pobierz produkt z bazy danych na podstawie ID
         const product = await Product.findByPk(productId);
 
         if (!product) {
-            // Jeśli produkt o podanym ID nie został znaleziony
             return res.status(404).json({ error: 'Product not found' });
         }
 
-        // Jeśli produkt został znaleziony, zwróć go w odpowiedzi
         res.json(product);
     } catch (error) {
-        // Obsługa błędów
         console.error('Error fetching product:', error);
         res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// Dodawanie produktu
+app.post('/products', async (req, res) => {
+    try {
+        const { name, price, description } = req.body;
+
+        const newProduct = await Product.create({
+            name: name,
+            price: price,
+            description: description,
+        });
+
+        res.status(201).json(newProduct);
+    } catch (error) {
+        console.error('Błąd podczas dodawania produktu:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// edycja produktu
+app.put('/products/:productId', async (req, res) => {
+    try {
+        const productId = req.params.productId;
+        const { newName, newPrice, newDescription } = req.body;
+
+        const updatedProduct = await Product.update(
+            {
+                name: newName,
+                price: newPrice,
+                description: newDescription
+            },
+            { 
+                where: { id: productId },
+                returning: true, 
+            }
+        );
+
+        if (updatedProduct[0] > 0) {
+            res.json({ message: 'Produkt został zaktualizowany', updatedProduct: updatedProduct[1][0] });
+        } else {
+            res.status(404).json({ error: 'Produkt nie został znaleziony' });
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+// Usuwanie produktu
+app.delete('/products/:productId', async (req, res) => {
+    try {
+        const productId = req.params.productId;
+        const deletedProduct = await Product.destroy({ where: { id: productId } });
+
+        if (deletedProduct) {
+            res.json({ message: 'Produkt został usunięty' });
+        } else {
+            res.status(404).json({ error: 'Produkt nie został znaleziony' });
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
     }
 });
 
 // Składanie zamówienia
 app.post('/order', verifyToken, async (req, res) => {
     try {
-        const { cart } = req.body; // Array of product IDs
+        const { cart } = req.body; 
         const productIds = cart.map(item => item.productId);
         const products = await Product.findAll({ where: { id: productIds } });
         const totalAmount = cart.reduce((sum, cartItem) => sum + cartItem.quantity * cartItem.price, 0);

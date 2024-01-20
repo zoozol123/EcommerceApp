@@ -93,6 +93,9 @@ const LoginSignup = () => {
         }
     
         if (response.status === 200 || response.status === 201) {
+          if(formData.username === 'admin' && formData.password === 'admin') {
+            sessionStorage.setItem('admin', 'true');    
+          }
           const sessionLogin = formData.username;
           const token = response.data.token;
           sessionStorage.setItem('authToken', token);
@@ -129,6 +132,7 @@ const LoginSignup = () => {
       sessionStorage.setItem('logged', 'false')
       sessionStorage.removeItem('cart');
       sessionStorage.removeItem('authToken');
+      sessionStorage.setItem('admin', 'false'); 
       window.location.reload();
     }
 
@@ -190,6 +194,7 @@ const LoginSignup = () => {
                 <div className='submitButton' onClick={()=>{ handleLogout(); }}>Wyloguj</div>: 
                 <div className='submitButton' onClick={()=>{ setFalse(); handleSubmit(); }}>Zatwierdź</div>  }           
             </div>
+            {sessionStorage.getItem('admin') ==='true'?<a className="administrator-panel" href="/admin"><span>Panel administratora</span></a>: <div className="administrator-panel"></div>}
         </div>
     </div>
   )
